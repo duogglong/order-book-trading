@@ -1,15 +1,11 @@
 from flask import Flask, jsonify, abort
 import requests
+import os
 
 app = Flask(__name__)
 
 # Binance API chỉ chấp nhận những limit này cho endpoint depth
 VALID_LIMITS = [5, 10, 20, 50, 100, 500, 1000]
-
-if __name__ == '__main__':
-    import os
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port, debug=True)
     
 def fetch_order_book(symbol, limit):
     if limit not in VALID_LIMITS:
@@ -69,4 +65,5 @@ def orderbook(symbol, limit):
     return jsonify(result)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
