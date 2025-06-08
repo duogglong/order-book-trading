@@ -14,4 +14,4 @@ COPY api-odb.py ./
 EXPOSE 5000
 
 # Chạy app Flask
-CMD ["python", "app.py"]
+CMD ["python", "api-odb.py"]
