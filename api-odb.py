@@ -6,6 +6,11 @@ app = Flask(__name__)
 # Binance API chỉ chấp nhận những limit này cho endpoint depth
 VALID_LIMITS = [5, 10, 20, 50, 100, 500, 1000]
 
+if __name__ == '__main__':
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port, debug=True)
+    
 def fetch_order_book(symbol, limit):
     if limit not in VALID_LIMITS:
         abort(400, description=f"Limit không hợp lệ. Chỉ chấp nhận {VALID_LIMITS}")
